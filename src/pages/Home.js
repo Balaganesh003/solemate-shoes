@@ -92,7 +92,7 @@ const Home = () => {
     <div className="bg-[#eee]">
       <Header />
       {/* Banner */}
-      <div class="flex flex-col space-y-[7rem] pt-[7rem] overflow-x-hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-[#eee]">
+      <div className="flex flex-col space-y-[7rem] pt-[7rem] overflow-x-hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-[#eee]">
         <div className="flex ">
           <div className="relative w-1/2 flex items-center justify-center">
             <div className="w-[26rem] h-[26rem] bg-gradient-to-r from-cyan-500 to-blue-500 absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] rounded-full  hover:bg-gradient-to-bl -z-5"></div>
@@ -240,13 +240,13 @@ const Home = () => {
             <div className="w-[23rem] h-[23rem] bg-gradient-to-bl from-orange-600 via-orange-400 to-yellow-300 absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] rounded-full  -z-5"></div>
             <img src={home3} alt="" className="z-50  scale-[85%]" />
             <div className="absolute -top-[3rem] -right-[8rem]">
-              <div class="relative h-70 w-70">
-                <div class="box-border relative  px-8 py-4 border-1 bg-gradient-to-r from-gray-100 to-gray-600   rounded-xl h-50 w-50 text-gray-900 font-bold scale-90">
+              <div className="relative h-70 w-70">
+                <div className="box-border relative  px-8 py-4 border-1 bg-gradient-to-r from-gray-100 to-gray-600   rounded-xl h-50 w-50 text-gray-900 font-bold scale-90">
                   <p>Hi, I'm Cortex </p>
                   <p>Best selling running shoe</p>
                   <p> ⭐⭐⭐⭐⭐</p>
                   <p> $ 150</p>
-                  <div class="absolute -bottom-[15rem] -left-[9rem]">
+                  <div className="absolute -bottom-[15rem] -left-[9rem]">
                     <img src={arr1} alt="" className="z-50  scale-[30%]" />
                   </div>
                 </div>
