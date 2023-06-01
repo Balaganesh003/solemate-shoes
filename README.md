@@ -1,3 +1,3 @@
 # Solemate Shoes
 
-[Go Live](https://solemate-shoes.netlify.app/mens)
+[Go Live](https://solemate-shoes.netlify.app/)
