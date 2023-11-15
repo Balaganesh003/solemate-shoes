@@ -4,9 +4,9 @@ import { BsBag, BsXLg, BsList, BsBoxArrowInLeft, BsBox } from 'react-icons/bs';
 import '../index.css';
 import { useDispatch } from 'react-redux';
 import { authActions } from '../store/auth-slice';
-import logo from '../assets/nikeimg.png';
 import { useSelector } from 'react-redux';
 import Cart from './Cart';
+import Logo from '../assets/solemate-shoes-logo.png';
 
 const Navigation = () => {
   const dispatch = useDispatch();
@@ -40,7 +40,7 @@ const Navigation = () => {
         <div className="hidden md:flex items-center justify-between h-16 z-10">
           <div className="flex-shrink-0 flex items-center justify-start flex-1">
             <Link to="/">
-              <img className="h-8 w-auto" src={logo} alt="Logo" />
+              <img className="h-8 w-auto" src={Logo} alt="Logo" />
             </Link>
           </div>
           <div className="flex items-center justify-center  space-x-10 flex-1">
@@ -104,7 +104,7 @@ const Navigation = () => {
         <div className="flex justify-between md:hidden">
           <div>
             <Link to="/">
-              <img src={logo} alt="Logo" className="h-8 w-auto" />
+              <img src={Logo} alt="Logo" className="h-8 w-auto" />
             </Link>
           </div>
           <div>

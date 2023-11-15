@@ -5,7 +5,7 @@ import home1 from '../assets/home1.png';
 import home3 from '../assets/home3.png';
 import home4 from '../assets/home4.png';
 import arr1 from '../assets/curly-arrow.svg';
-import logo from '../assets/nikeimg.png';
+import logo from '../assets/solemate-shoes-logo.png';
 import { FaAward, FaBusinessTime } from 'react-icons/fa';
 import { MdPriceCheck } from 'react-icons/md';
 import { BsFacebook, BsInstagram, BsTwitter } from 'react-icons/bs';
@@ -297,10 +297,9 @@ const Home = () => {
       <div className="bg-[#111]">
         <div className="flex max-w-7xl mx-auto justify-between px-4 py-[5rem]">
           <div className=" flex flex-col space-y-2">
-            <div className=" w-[5rem]">
-              <img className="object cover " src={logo} alt="Logo" />
+            <div className=" w-[4rem]">
+              <img className="object cover" src={logo} alt="Logo" />
             </div>
-            <span className="text-white">SOLEMATE SHOES</span>
             <div className="text-white pt-4 flex flex-col space-y-1">
               <span>Curious to know more about us?</span>
               <span>follow out our social media</span>

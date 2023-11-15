@@ -41,7 +41,6 @@ const App = () => {
   };
 
   useEffect(() => {
-    console.log('shoes');
     dispatch(productsActions.setShoeData(shoes));
     getUser();
   }, []);
