@@ -15,7 +15,6 @@ const Cart = () => {
   const dispatch = useDispatch();
   const stripe = useStripe();
   const elements = useElements();
-  const [isProcessingPayment, setIsProcessingPayment] = useState(false);
   const amount = useSelector((state) => state.cart.totalPrice);
   const currentUser = useSelector((state) => state.auth.user);
 
@@ -67,8 +66,6 @@ const Cart = () => {
       return;
     }
 
-    setIsProcessingPayment(true);
-
     const response = await fetch('/.netlify/functions/create-payment-intent', {
       method: 'POST',
       headers: {
@@ -91,8 +88,6 @@ const Cart = () => {
         },
       },
     });
-
-    setIsProcessingPayment(false);
 
     if (paymentResult.error) {
       alert(paymentResult.error.message);
