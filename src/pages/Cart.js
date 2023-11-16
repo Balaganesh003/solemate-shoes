@@ -9,7 +9,6 @@ import { db } from '../utils/firebase';
 import { orderActions } from '../store/order-slice';
 import cartImg from '../assets/cart.png';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
-import { useState } from 'react';
 
 const Cart = () => {
   const dispatch = useDispatch();
