@@ -8,9 +8,17 @@ import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '../utils/firebase';
 import { orderActions } from '../store/order-slice';
 import cartImg from '../assets/cart.png';
+import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+import { useState } from 'react';
 
 const Cart = () => {
   const dispatch = useDispatch();
+  const stripe = useStripe();
+  const elements = useElements();
+  const [isProcessingPayment, setIsProcessingPayment] = useState(false);
+  const amount = useSelector((state) => state.cart.totalPrice);
+  const currentUser = useSelector((state) => state.auth.user);
+
   const { items, totalPrice } = useSelector((state) => state.cart);
   const { user } = useSelector((state) => state.auth);
   const { orders } = useSelector((state) => state.order);
@@ -50,6 +58,50 @@ const Cart = () => {
     const docSnap = await getDoc(docRef);
     dispatch(orderActions.clearOrders());
     dispatch(orderActions.setOrders(docSnap.data().orders));
+  };
+
+  const paymentHandler = async (e) => {
+    e.preventDefault();
+
+    if (!stripe || !elements) {
+      return;
+    }
+
+    setIsProcessingPayment(true);
+
+    const response = await fetch('/.netlify/functions/create-payment-intent', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ amount: amount * 100 * 80 }),
+    }).then((res) => res.json());
+
+    const {
+      paymentIntent: { client_secret },
+    } = response;
+
+    const card_element = elements.getElement(CardElement);
+
+    const paymentResult = await stripe.confirmCardPayment(client_secret, {
+      payment_method: {
+        card: card_element,
+        billing_details: {
+          name: currentUser.displayName || 'Guest',
+        },
+      },
+    });
+
+    setIsProcessingPayment(false);
+
+    if (paymentResult.error) {
+      alert(paymentResult.error.message);
+    } else {
+      if (paymentResult.paymentIntent.status === 'succeeded') {
+        placeOrder();
+        alert('Payment successful');
+      }
+    }
   };
 
   return (
@@ -120,8 +172,11 @@ const Cart = () => {
               <p className="text-gray-600 mb-4">
                 Total price: ${totalPrice.toFixed(2)}
               </p>
+              <div className="p-4 border rounded-lg border-black mb-4">
+                <CardElement />
+              </div>
               <button
-                onClick={() => placeOrder()}
+                onClick={(e) => paymentHandler(e)}
                 className="bg-blue-500 text-white px-4 py-2 rounded font-bold">
                 Checkout
               </button>
